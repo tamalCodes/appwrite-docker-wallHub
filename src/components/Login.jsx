@@ -1,70 +1,34 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import SocialSignin from './SocialSignin';
+import Loginpic from "../assets/Login.svg"
+import "../styles/Login.css"
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 
 const Login = () => {
-    return (
-        <div>
-          <h2 className="mt-5 text-center">Super Auth</h2>
-          <h3 className=" text-center">Login</h3>
-          <form className="container">
-            <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label">
-                Email address
-              </label>
-              <input
-               
-                type="email"
-                name="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
-                Password
-              </label>
-              <input
-               
-                type="password"
-                name="password"
-                required
-                className="form-control"
-                id="exampleInputPassword1"
-              />
-            </div>
-            <div className="mb-3">
-              <span>First time here ? </span>
-              <Link to="/signup">
-                <button className="btn btn-primary mx-1">Signup</button>
-              </Link>
-            </div>
-  
-            <div>
-              <span>Forget password ? </span>
-              <Link to='/forget-password' >
-                <button
-                  className="btn btn-danger mx-1"
-                
-                >
-                  Forget Password
-                </button>
-              </Link>
-            </div>
-  
-            <button
-              type="submit"
-    
-              className="btn btn-success"
-            >
-              Login
-            </button>
-          </form>
-        <SocialSignin/>
-         
+  return (
+    <>
+
+      <div className="container-fluid login_parent">
+        <div className="image_div">
+          <img src={Loginpic} alt="" className='login_pic' />
         </div>
-      );
+        <div className="bodytext_div">
+          <h1>Login to WallHub</h1>
+          <form>
+            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Email adress' />
+            <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Password' />
+
+            <button type="button" class="btn btn-warning">Warning</button>
+          </form>
+
+          <hr />
+          <h3>Or login with</h3>
+          <FcGoogle />
+          <FaFacebook />
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default Login

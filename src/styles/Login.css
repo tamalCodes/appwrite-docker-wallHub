@@ -1,0 +1,8 @@
+.login_parent {
+  display: flex;
+}
+
+.login_pic {
+  width: 500px;
+  height: 500px;
+}
