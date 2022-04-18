@@ -8,3 +8,4 @@ sdk
   .setProject("6258075cae6d09afd03a"); // Your project ID
 
 export const account = sdk.account;
+export const storage = sdk.storage;

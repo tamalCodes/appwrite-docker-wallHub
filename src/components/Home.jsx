@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { account } from '../services/Appwriteconfig';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import "../styles/Home.css";
+import upload from "../assets/Upload.svg";
 
 const Home = () => {
 
@@ -47,21 +49,21 @@ const Home = () => {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">WallHub</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 navbar_ul">
+              <li className="nav-item">
                 Home
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 About
               </li>
-              <li class="nav-item" onClick={(e) => { handlelogout(e) }}>
+              <li className="nav-item" onClick={(e) => { handlelogout(e) }}>
                 Logout
               </li>
 
@@ -71,6 +73,17 @@ const Home = () => {
         </div>
       </nav>
 
+      <div className="container-fluid uploadparent">
+        <div className="uploadimgdiv">
+          <img src={upload} alt="" className='upload_image' />
+        </div>
+
+        <div className="uploadtextdiv">
+          <h2>Upload the finest wallpapers you have !! </h2>
+          <input type="file" name="" id="" />
+          <button className='btn btn-warning'>Upload</button>
+        </div>
+      </div>
     </>
   )
 }

@@ -1,0 +1,42 @@
+.navbar_ul li {
+  margin-right: 30px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: bold;
+  /* color: #fff; */
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+}
+
+.upload_image {
+  width: 600px;
+  height: 600px;
+}
+
+.uploadtextdiv {
+  font-family: "Open Sans", sans-serif;
+}
+.uploadtextdiv h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.uploadtextdiv button {
+  width: auto;
+  display: block;
+  margin-top: 30px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+.uploadparent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
