@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import upload from "../assets/Upload.svg";
 
+import { AiOutlineDownload } from "react-icons/ai";
+
 const Home = () => {
 
   let navigate = useNavigate();
@@ -93,7 +95,7 @@ const Home = () => {
     console.log(imageId);
 
     try {
-      const downloadLink = storage.getFileDownload(imageId);
+      const downloadLink = storage.getFileDownload('625db502720c8f52312c', imageId);
 
       window.open(downloadLink.href);
     } catch (error) {
@@ -157,7 +159,14 @@ const Home = () => {
           {
             imageList.map((img) => {
               return (
-                <img src={storage.getFilePreview('625db502720c8f52312c', `${img.$id}`)} alt="" srcset="" />
+
+                <div className="uploadparent2_imgparent2_imgdiv">
+
+                  <AiOutlineDownload className='download_btn' onClick={(e) => { downloadImage(e, img.$id) }} />
+
+                  <img src={storage.getFilePreview('625db502720c8f52312c', `${img.$id}`)} alt="" srcset="" />
+
+                </div>
 
               );
             })}

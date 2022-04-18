@@ -64,3 +64,9 @@
   width: 30rem;
   margin-bottom: 3rem;
 }
+
+.download_btn {
+  font-size: 2rem;
+  margin-right: 10px;
+  cursor: pointer;
+}
