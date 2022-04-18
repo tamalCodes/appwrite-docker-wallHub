@@ -1,15 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Registerpic from "../assets/Register.svg"
 import "../styles/Login.css"
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { account } from "../services/Appwriteconfig";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [creds, setcreds] = useState({ name: "", email: "", password: "" });
-  const history = useHistory()
+  let navigate = useNavigate();
+
+
+  async function fetchUser() {
+    try {
+      const user = await account.get();
+      console.log(user);
+      if (user)
+        navigate("/home")
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  useEffect(() => {
+    fetchUser()
+  }, []);
+
+
 
   //onchange event for email and password
   const handleChange = (e) => {
@@ -28,11 +46,18 @@ const Signup = () => {
       const newuser = await account.create('unique()', creds.email, creds.password, creds.name);
       console.log(newuser);
 
-      history.push('/login')
+      navigate('/')
     } catch (error) {
       console.log(error);
     }
   };
+
+  const googlelogin = async (e) => {
+    e.preventDefault();
+    await account.createOAuth2Session('google', 'https://wall-hub.vercel.app/home', 'https://wall-hub.vercel.app/signup');
+
+  }
+
 
 
 
@@ -92,7 +117,7 @@ const Signup = () => {
           <br />
 
           <h2 className='login_with'>Or signup with</h2>
-          <FcGoogle className='social_icons' />
+          <FcGoogle className='social_icons' onClick={(e) => { googlelogin(e) }} />
           <FaFacebook className='social_icons' />
         </div>
       </div>
