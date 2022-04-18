@@ -28,39 +28,50 @@ const Home = () => {
 
   //* Logout
   const handlelogout = async (e) => {
-    try {
-      e.preventDefault();
-      await account.deleteSessions();
-      navigate("/");
+    e.preventDefault();
 
+    try {
+
+      await account.deleteSessions();
+      alert("Logged you out ")
+      navigate("/");
+      //     const user = await account.get();
+      //     console.log(user.$id);
+      //     console.log(localStorage.getItem('token'));
     } catch (error) {
       console.log(error);
+      alert("Please try again later, server is having issues !! ")
     }
 
   };
 
   return (
-    <div className="container-xxl border mt-5 p-3">
-      <h3 className="text-center"> Super Auth </h3>
-      <h6 className='d-flex justify-content-end' >Welcome, Username </h6>
-      <div className="d-flex justify-content-end align-items-center">
+    <>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                Home
+              </li>
+              <li class="nav-item">
+                About
+              </li>
+              <li class="nav-item" onClick={(e) => { handlelogout(e) }}>
+                Logout
+              </li>
 
-        <button className="btn btn-danger mx-1" onClick={(e) => { handlelogout(e) }}>Logout</button>
-        <button className="btn btn-primary mx-1">Change Password</button>
-      </div>
+            </ul>
 
-      <div className="my-3">
-        <h6>UID : </h6>
-        <h6>Name : </h6>
-        <h6>Email : </h6>
-        <h6>Email Verified :</h6>
+          </div>
+        </div>
+      </nav>
 
-        <h6>Registered on :</h6>
-      </div>
-      <div className="d-flex justify-content-end align-items-center">
-        <button className="btn btn-outline-danger">Delete Account</button>
-      </div>
-    </div>
+    </>
   )
 }
 

@@ -5,12 +5,13 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { account } from "../services/Appwriteconfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 const Signup = () => {
   const [creds, setcreds] = useState({ name: "", email: "", password: "" });
   let navigate = useNavigate();
-
+  const params = useParams();
+  let location = useLocation();
 
   async function fetchUser() {
     try {
@@ -25,6 +26,8 @@ const Signup = () => {
   }
   useEffect(() => {
     fetchUser()
+    console.log(location)
+    console.log(window.location.href);
   }, []);
 
 
@@ -49,12 +52,23 @@ const Signup = () => {
       navigate('/')
     } catch (error) {
       console.log(error);
+      alert("Please try again later, server is having issues !! ")
     }
   };
 
   const googlelogin = async (e) => {
     e.preventDefault();
-    await account.createOAuth2Session('google', 'https://wall-hub.vercel.app/home', 'https://wall-hub.vercel.app/signup');
+
+    try {
+      if (window.location.href === "http://localhost:3000/")
+        await account.createOAuth2Session('google', 'http://localhost:3000/home', 'http://localhost:3000/');
+      else
+        await account.createOAuth2Session('google', 'https://wall-hub.vercel.app/home', 'https://wall-hub.vercel.app/');
+
+    } catch (error) {
+      console.log(error);
+      alert("Please try again later, server is having issues !! ")
+    }
 
   }
 
