@@ -11,6 +11,8 @@ const Home = () => {
 
   const [userDetails, setUserDetails] = useState();
   const [image, setimage] = useState();
+  const [imageList, setImageList] = useState([]);
+  var allimages = [];
 
   const fetchUser = async () => {
     try {
@@ -23,9 +25,23 @@ const Home = () => {
     }
   };
 
+  //Get the list of images from appwrite
+  const getImage = async () => {
+    try {
+      allimages = await storage.listFiles('625db502720c8f52312c');
+      setImageList(allimages.files);
+      console.log(allimages.files);
+      // console.log(await storage.listFiles('625db502720c8f52312c'));
+    } catch (error) {
+      console.log(error);
+      alert("Servvver error, try again later")
+    }
+  };
+
+  //Runs every time the page reloads
   useEffect(() => {
     fetchUser();
-
+    getImage();
   }, []);
 
   //* Upload image
@@ -34,6 +50,7 @@ const Home = () => {
     try {
       const newImage = await storage.createFile('625db502720c8f52312c', 'unique()', image);
       console.log(newImage);
+      getImage();
     } catch (error) {
       console.log(error);
       alert("Server error, try again later")
@@ -55,6 +72,33 @@ const Home = () => {
       alert("Please try again later, server is having issues !! ")
     }
 
+  };
+
+  //Delete the image
+  const deleteImage = async (e, imageId) => {
+    e.preventDefault();
+
+    try {
+      await storage.deleteFile(imageId);
+      alert("Image Deleted Successfully");
+    } catch (error) {
+      alert(`${error.message}`);
+    }
+  };
+
+  //Download image
+  const downloadImage = (e, imageId) => {
+    e.preventDefault();
+
+    console.log(imageId);
+
+    try {
+      const downloadLink = storage.getFileDownload(imageId);
+
+      window.open(downloadLink.href);
+    } catch (error) {
+      console.log(`${error.message}`);
+    }
   };
 
   return (
@@ -96,13 +140,33 @@ const Home = () => {
               setimage(e.target.files[0]);
             }}
             type="file"
-            class="btn form-control-file"
+
             id="exampleFormControlFile1"
           />
 
           <button className='btn btn-warning' onClick={(e) => { handleUpload(e) }}>Upload</button>
         </div>
       </div>
+
+      <div className="container uploadparent2">
+
+        <h2>Here's some of the finest wallpapers !! </h2>
+
+        <div className="container-fluid uploadparent2_imgparent2">
+
+          {
+            imageList.map((img) => {
+              return (
+                <img src={storage.getFilePreview('625db502720c8f52312c', `${img.$id}`)} alt="" srcset="" />
+
+              );
+            })}
+
+
+        </div>
+      </div>
+
+
     </>
   )
 }

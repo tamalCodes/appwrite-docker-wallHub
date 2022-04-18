@@ -14,8 +14,8 @@
 }
 
 .upload_image {
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
 }
 
 .uploadtextdiv {
@@ -39,4 +39,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.uploadparent2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.uploadparent2 h2 {
+  margin-bottom: 5rem;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+.uploadparent2_imgparent2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.uploadparent2_imgparent2 img {
+  width: 30rem;
+  margin-bottom: 3rem;
 }
