@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { account } from '../services/Appwriteconfig';
+import { account, storage } from '../services/Appwriteconfig';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
@@ -10,6 +10,7 @@ const Home = () => {
   let navigate = useNavigate();
 
   const [userDetails, setUserDetails] = useState();
+  const [image, setimage] = useState();
 
   const fetchUser = async () => {
     try {
@@ -27,6 +28,17 @@ const Home = () => {
 
   }, []);
 
+  //* Upload image
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    try {
+      const newImage = await storage.createFile('625db502720c8f52312c', 'unique()', image);
+      console.log(newImage);
+    } catch (error) {
+      console.log(error);
+      alert("Server error, try again later")
+    }
+  }
 
   //* Logout
   const handlelogout = async (e) => {
@@ -37,9 +49,7 @@ const Home = () => {
       await account.deleteSessions();
       alert("Logged you out ")
       navigate("/");
-      //     const user = await account.get();
-      //     console.log(user.$id);
-      //     console.log(localStorage.getItem('token'));
+
     } catch (error) {
       console.log(error);
       alert("Please try again later, server is having issues !! ")
@@ -80,8 +90,17 @@ const Home = () => {
 
         <div className="uploadtextdiv">
           <h2>Upload the finest wallpapers you have !! </h2>
-          <input type="file" name="" id="" />
-          <button className='btn btn-warning'>Upload</button>
+
+          <input
+            onChange={(e) => {
+              setimage(e.target.files[0]);
+            }}
+            type="file"
+            class="btn form-control-file"
+            id="exampleFormControlFile1"
+          />
+
+          <button className='btn btn-warning' onClick={(e) => { handleUpload(e) }}>Upload</button>
         </div>
       </div>
     </>
