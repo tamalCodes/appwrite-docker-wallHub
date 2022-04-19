@@ -22,6 +22,18 @@ Making this app was an amazing experience.
 - Storing the registered user in the **storage** and creating a **local session**.
 - Using **Google Authentication** for signing up !!
 
+## Here's a sneak peek 👀
+
+![image](https://user-images.githubusercontent.com/72851613/164060567-9229e080-24f0-4537-a718-b376b498c267.png)
+
+![image](https://user-images.githubusercontent.com/72851613/164060670-2be41ff5-a8a9-414e-a7e1-8537d565ad9f.png)
+
 ## A demo of how it works 🎥
 
+https://user-images.githubusercontent.com/72851613/164073057-4af3b820-1761-4872-bdff-e68d6d04b755.mp4
+
+
 ## Issues that might occur in the deployed version 🥴
+- Login glitch
+- Google auth endpoints might not work
+I am trying to fix these ASAP, till then you might clone the repo, and test it.
