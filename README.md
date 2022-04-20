@@ -22,6 +22,11 @@ Making this app was an amazing experience.
 - Storing the registered user in the **storage** and creating a **local session**.
 - Using **Google Authentication** for signing up !!
 
+## Here's how it works ⚙
+
+![image](https://user-images.githubusercontent.com/72851613/164241338-b2eff8e5-2298-4b02-b822-3323b716d42f.png)
+
+
 ## Here's a sneak peek 👀
 
 ![image](https://user-images.githubusercontent.com/72851613/164060567-9229e080-24f0-4537-a718-b376b498c267.png)
