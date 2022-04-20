@@ -96,6 +96,7 @@ const Signup = () => {
               aria-describedby="name"
               name="name"
               value={creds.name}
+              placeholder="Your name"
             />
 
             <input
@@ -109,6 +110,7 @@ const Signup = () => {
               aria-describedby="email"
               name="email"
               value={creds.email}
+              placeholder="Your email ID"
             />
 
             <input
@@ -121,6 +123,7 @@ const Signup = () => {
               id="password"
               name="password"
               value={creds.password}
+              placeholder="Your password"
             />
 
             <button type="button" class="btn btn-warning" onClick={(e) => { handleSubmit(e) }}>Submit</button>
